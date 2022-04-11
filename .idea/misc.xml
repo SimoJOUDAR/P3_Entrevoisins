@@ -18,6 +18,7 @@
         <entry key="app/src/main/res/drawable/round_button.xml" value="0.321025641025641" />
         <entry key="app/src/main/res/layout/activity_add_neighbour.xml" value="0.2359375" />
         <entry key="app/src/main/res/layout/activity_list_neighbour.xml" value="0.26944444444444443" />
+        <entry key="app/src/main/res/layout/activity_neighbour_detail.xml" value="0.29583333333333334" />
         <entry key="app/src/main/res/layout/fragment_list_neighbour.xml" value="0.26944444444444443" />
         <entry key="app/src/main/res/layout/fragment_neighbour.xml" value="0.26944444444444443" />
         <entry key="app/src/main/res/layout/fragment_neighbour_list.xml" value="0.26944444444444443" />
