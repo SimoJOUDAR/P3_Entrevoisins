@@ -30,13 +30,16 @@ public class NeighbourFragment extends Fragment {
     private List<Neighbour> mNeighbours;
     private RecyclerView mRecyclerView;
 
+    private boolean mShowOnlyFavorites;
+
 
     /**
      * Create and return a new instance
      * @return @{@link NeighbourFragment}
      */
-    public static NeighbourFragment newInstance() {
+    public static NeighbourFragment newInstance(boolean showOnlyFavorites) {
         NeighbourFragment fragment = new NeighbourFragment();
+        fragment.mShowOnlyFavorites = showOnlyFavorites;
         return fragment;
     }
 
@@ -61,7 +64,13 @@ public class NeighbourFragment extends Fragment {
      * Init the List of neighbours
      */
     private void initList() {
-        mNeighbours = mApiService.getNeighbours();
+        if (mShowOnlyFavorites){
+            mNeighbours = mApiService.getFavoriteNeighbours();
+        }
+        else{
+            mNeighbours = mApiService.getNeighbours();
+        }
+
         mRecyclerView.setAdapter(new MyNeighbourRecyclerViewAdapter(mNeighbours));
     }
 
@@ -99,12 +108,8 @@ public class NeighbourFragment extends Fragment {
      */
     @Subscribe
     public void onOpenNeighbourDetail(DetailNeighbourEvent event) {
-        Neighbour neighbour = event.neighbour;
-        int position = event.position;
         Intent i = new Intent(getActivity(), NeighbourDetailActivity.class);
-        i.putExtra(NeighbourDetailActivity.EXTRA_USER, neighbour);
-        i.putExtra(NeighbourDetailActivity.EXTRA_USER_POSITION, position);
-
+        i.putExtra(NeighbourDetailActivity.EXTRA_USER_ID, event.id);
         startActivity(i);
     }
 }

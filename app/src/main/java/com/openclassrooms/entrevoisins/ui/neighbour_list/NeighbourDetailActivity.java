@@ -30,8 +30,7 @@ import butterknife.ButterKnife;
 
 public class NeighbourDetailActivity extends AppCompatActivity {
 
-    public static final String EXTRA_USER = "com.openclassrooms.entrevoisins.ui.neighbour_detail.NeighbourDetailActivity.EXTRA_USER";
-    public static final String EXTRA_USER_POSITION = "com.openclassrooms.entrevoisins.ui.neighbour_detail.NeighbourDetailActivity.EXTRA_USER_POSITION";
+    public static final String EXTRA_USER_ID = "com.openclassrooms.entrevoisins.ui.neighbour_detail.NeighbourDetailActivity.EXTRA_USER_ID";
 
 
     @BindView(R.id.detail_avatar) ImageView avatar;
@@ -44,7 +43,6 @@ public class NeighbourDetailActivity extends AppCompatActivity {
 
     private NeighbourApiService mApiService;
     private Neighbour mNeighbour;
-    private int mPosition;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,26 +53,32 @@ public class NeighbourDetailActivity extends AppCompatActivity {
         ButterKnife.bind(this);
 
         mApiService = DI.getNeighbourApiService();
-        mNeighbour = getIntent().getParcelableExtra(EXTRA_USER);
-        mPosition = getIntent().getIntExtra(EXTRA_USER_POSITION, -1);
+        mNeighbour = mApiService.getNeighbour(getIntent().getLongExtra(EXTRA_USER_ID, -1));
+
         this.updateUI();
 
         favoriteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Boolean isFavorite = mNeighbour.getIsFavorite();
-               if (!isFavorite){
-                   mApiService.setIsFavorite(mNeighbour, mPosition, true);
-                   favoriteButton.setImageResource(R.drawable.ic_star_white_24dp);
-               }
-               else if (isFavorite){
-                   mApiService.setIsFavorite(mNeighbour, mPosition, false);
-                   favoriteButton.setImageResource(R.drawable.ic_star_border_white_24dp);
-               }
+                isFavorite = !isFavorite;
+                mApiService.getNeighbour(getIntent().getLongExtra(EXTRA_USER_ID, -1))
+                        .setIsFavorite(isFavorite);
+                updateFavorite();
             }
         });
     }
 
+
+    public void updateFavorite(){
+        mNeighbour = mApiService.getNeighbour(getIntent().getLongExtra(EXTRA_USER_ID, -1));
+        if (mNeighbour.getIsFavorite()){
+            favoriteButton.setImageResource(R.drawable.ic_star_white_24dp);
+        }
+        else {
+            favoriteButton.setImageResource(R.drawable.ic_star_border_white_24dp);
+        }
+    }
 
     public void updateUI(){
         Glide.with(this).load(mNeighbour.getAvatarUrl()).into(avatar);
@@ -83,9 +87,7 @@ public class NeighbourDetailActivity extends AppCompatActivity {
         this.address.setText(mNeighbour.getAddress());
         this.phoneNumber.setText(mNeighbour.getPhoneNumber());
         this.about.setText(mNeighbour.getAboutMe());
-        if (mNeighbour.getIsFavorite()){
-            favoriteButton.setImageResource(R.drawable.ic_star_white_24dp);
-        }
+        updateFavorite();
     }
 
 }

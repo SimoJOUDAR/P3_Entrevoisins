@@ -4,11 +4,9 @@ import com.openclassrooms.entrevoisins.model.Neighbour;
 
 public class DetailNeighbourEvent {
 
-    public Neighbour neighbour;
-    public int position;
+    public long id;
 
-    public DetailNeighbourEvent(Neighbour neighbour, int position) {
-        this.neighbour = neighbour;
-        this.position = position;
+    public DetailNeighbourEvent(long id) {
+        this.id = id;
     }
 }

@@ -11,10 +11,22 @@ import java.util.List;
 public interface NeighbourApiService {
 
     /**
+     * Get a Neighbour by id
+     * @return {@link List}
+     */
+    Neighbour getNeighbour(long id);
+
+    /**
      * Get all my Neighbours
      * @return {@link List}
      */
     List<Neighbour> getNeighbours();
+
+    /**
+     * Get my Favorite Neighbours only
+     * @return {@link List}
+     */
+    List<Neighbour> getFavoriteNeighbours();
 
     /**
      * Deletes a neighbour
