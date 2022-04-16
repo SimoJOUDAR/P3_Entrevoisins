@@ -84,7 +84,7 @@ public class NeighbourFragment extends Fragment {
     }
 
     /**
-     * Fired if the user clicks on a delete button
+     * Fired when the user clicks on a delete button
      * @param event
      */
     @Subscribe
@@ -94,22 +94,17 @@ public class NeighbourFragment extends Fragment {
     }
 
     /**
-     * Fired if the user clicks on an avatar
+     * Fired when the user clicks on an item of the RecyclerView
      * @param event
      */
     @Subscribe
     public void onOpenNeighbourDetail(DetailNeighbourEvent event) {
-        openNeighbourDetailActivity(event.neighbour);
-    }
-
-    public void openNeighbourDetailActivity(Neighbour neighbour) {
+        Neighbour neighbour = event.neighbour;
+        int position = event.position;
         Intent i = new Intent(getActivity(), NeighbourDetailActivity.class);
-        i.putExtra(NeighbourDetailActivity.EXTRA_USER_ID, String.valueOf(neighbour.getId()));
-        i.putExtra(NeighbourDetailActivity.EXTRA_USER_AVATAR, neighbour.getAvatarUrl());
-        i.putExtra(NeighbourDetailActivity.EXTRA_USER_NAME, neighbour.getName());
-        i.putExtra(NeighbourDetailActivity.EXTRA_USER_ADDRESS, neighbour.getAddress());
-        i.putExtra(NeighbourDetailActivity.EXTRA_USER_PHONE_NUMBER, neighbour.getPhoneNumber());
-        i.putExtra(NeighbourDetailActivity.EXTRA_USER_ABOUT, neighbour.getAboutMe());
+        i.putExtra(NeighbourDetailActivity.EXTRA_USER, neighbour);
+        i.putExtra(NeighbourDetailActivity.EXTRA_USER_POSITION, position);
+
         startActivity(i);
     }
 }

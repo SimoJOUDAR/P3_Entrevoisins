@@ -53,10 +53,10 @@ public class MyNeighbourRecyclerViewAdapter extends RecyclerView.Adapter<MyNeigh
             }
         });
 
-        holder.mNeighbourAvatar.setOnClickListener(new View.OnClickListener() {
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                EventBus.getDefault().post(new DetailNeighbourEvent(neighbour));
+                EventBus.getDefault().post(new DetailNeighbourEvent(neighbour, position));
             }
         });
     }
