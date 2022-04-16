@@ -33,6 +33,7 @@ public class NeighbourDetailActivity extends AppCompatActivity {
     @BindView(R.id.detail_favorite_button) ImageButton favoriteButton;
 
     private NeighbourApiService mApiService;
+    private long id;
     private Neighbour mNeighbour;
 
     @Override
@@ -44,17 +45,14 @@ public class NeighbourDetailActivity extends AppCompatActivity {
         ButterKnife.bind(this);
 
         mApiService = DI.getNeighbourApiService();
-        mNeighbour = mApiService.getNeighbour(getIntent().getLongExtra(EXTRA_USER_ID, -1));
-
+        id = getIntent().getLongExtra(EXTRA_USER_ID, -1);
+        mNeighbour = mApiService.getNeighbour(id);
         this.updateUI();
 
         favoriteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Boolean isFavorite = mNeighbour.getIsFavorite();
-                isFavorite = !isFavorite;
-                mApiService.getNeighbour(getIntent().getLongExtra(EXTRA_USER_ID, -1))
-                        .setIsFavorite(isFavorite);
+                mApiService.changeIsFavorite(mApiService.getNeighbour(id));
                 updateFavorite();
             }
         });
@@ -62,7 +60,7 @@ public class NeighbourDetailActivity extends AppCompatActivity {
 
 
     public void updateFavorite(){
-        mNeighbour = mApiService.getNeighbour(getIntent().getLongExtra(EXTRA_USER_ID, -1));
+        mNeighbour = mApiService.getNeighbour(id);
         if (mNeighbour.getIsFavorite()){
             favoriteButton.setImageResource(R.drawable.ic_star_gold_24dp);
         }
