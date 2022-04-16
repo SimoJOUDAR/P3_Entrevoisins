@@ -59,7 +59,7 @@
                     android:layout_height="55dp"
                     android:background="@drawable/round_button"
                     android:elevation="20dp"
-                    android:src="@drawable/ic_star_border_white_24dp" />
+                    android:src="@drawable/ic_star_border_gold_24dp" />
 
             </android.support.design.circularreveal.cardview.CircularRevealCardView>
 

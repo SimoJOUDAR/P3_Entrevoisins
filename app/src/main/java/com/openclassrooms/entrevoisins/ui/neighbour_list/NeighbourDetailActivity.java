@@ -1,29 +1,20 @@
 package com.openclassrooms.entrevoisins.ui.neighbour_list;
 
-import android.content.Context;
-import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
-import android.graphics.drawable.Drawable;
-import android.support.annotation.DrawableRes;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
-import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.request.RequestOptions;
 import com.openclassrooms.entrevoisins.R;
 import com.openclassrooms.entrevoisins.di.DI;
 import com.openclassrooms.entrevoisins.model.Neighbour;
 import com.openclassrooms.entrevoisins.service.NeighbourApiService;
-
-import java.util.HashMap;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -73,10 +64,10 @@ public class NeighbourDetailActivity extends AppCompatActivity {
     public void updateFavorite(){
         mNeighbour = mApiService.getNeighbour(getIntent().getLongExtra(EXTRA_USER_ID, -1));
         if (mNeighbour.getIsFavorite()){
-            favoriteButton.setImageResource(R.drawable.ic_star_white_24dp);
+            favoriteButton.setImageResource(R.drawable.ic_star_gold_24dp);
         }
         else {
-            favoriteButton.setImageResource(R.drawable.ic_star_border_white_24dp);
+            favoriteButton.setImageResource(R.drawable.ic_star_border_gold_24dp);
         }
     }
 

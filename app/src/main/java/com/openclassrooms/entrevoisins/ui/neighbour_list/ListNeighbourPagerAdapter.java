@@ -19,10 +19,9 @@ public class ListNeighbourPagerAdapter extends FragmentPagerAdapter {
     @Override
     public Fragment getItem(int position) {
         //return NeighbourFragment.newInstance();
-        boolean showOnlyFavorites = false;
-        if (position>0){
-            showOnlyFavorites = true;
-        }
+        boolean showOnlyFavorites;
+        if (position == 1){ showOnlyFavorites = true; }
+        else showOnlyFavorites = false;
         return NeighbourFragment.newInstance(showOnlyFavorites);
     }
 
@@ -32,6 +31,6 @@ public class ListNeighbourPagerAdapter extends FragmentPagerAdapter {
      */
     @Override
     public int getCount() {
-        return 1;
+        return 2;
     }
 }
