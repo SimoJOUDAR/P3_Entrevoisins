@@ -19,7 +19,9 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.openclassrooms.entrevoisins.R;
+import com.openclassrooms.entrevoisins.di.DI;
 import com.openclassrooms.entrevoisins.model.Neighbour;
+import com.openclassrooms.entrevoisins.service.NeighbourApiService;
 
 import java.util.HashMap;
 
@@ -40,6 +42,7 @@ public class NeighbourDetailActivity extends AppCompatActivity {
     @BindView(R.id.detail_about) TextView about;
     @BindView(R.id.detail_favorite_button) ImageButton favoriteButton;
 
+    private NeighbourApiService mApiService;
     private Neighbour mNeighbour;
     private int mPosition;
 
@@ -50,6 +53,8 @@ public class NeighbourDetailActivity extends AppCompatActivity {
         getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         setContentView(R.layout.activity_neighbour_detail);
         ButterKnife.bind(this);
+
+        mApiService = DI.getNeighbourApiService();
         mNeighbour = getIntent().getParcelableExtra(EXTRA_USER);
         mPosition = getIntent().getIntExtra(EXTRA_USER_POSITION, -1);
         this.updateUI();
@@ -59,9 +64,11 @@ public class NeighbourDetailActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Boolean isFavorite = mNeighbour.getIsFavorite();
                if (!isFavorite){
+                   mApiService.setIsFavorite(mNeighbour, mPosition, true);
                    favoriteButton.setImageResource(R.drawable.ic_star_white_24dp);
                }
                else if (isFavorite){
+                   mApiService.setIsFavorite(mNeighbour, mPosition, false);
                    favoriteButton.setImageResource(R.drawable.ic_star_border_white_24dp);
                }
             }

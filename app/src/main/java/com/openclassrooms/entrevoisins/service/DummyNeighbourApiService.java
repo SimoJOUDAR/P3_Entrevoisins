@@ -39,6 +39,8 @@ public class DummyNeighbourApiService implements  NeighbourApiService {
 
     @Override
     public void setIsFavorite(Neighbour neighbour, int position, boolean isFavorite) {
-        neighbours.get(position).setIsFavorite(isFavorite);
+        if (neighbours.get(position).getId() == neighbour.getId()) {
+            neighbours.get(position).setIsFavorite(isFavorite);
+        }
     }
 }
