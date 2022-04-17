@@ -46,7 +46,7 @@ public class NeighboursListTest {
     }
 
     /**
-     * We ensure that our recyclerview is displaying at least on item
+     * We check if our recyclerview is displaying at least on item
      */
     @Test
     public void myNeighboursList_shouldNotBeEmpty() {
