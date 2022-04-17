@@ -83,7 +83,7 @@ public class FavoriteNeighboursListTest {
     }
 
     /**
-     * We check if
+     * We check if all favorites are displayed
      */
     @Test
     public void favoriteNeighboursList_shouldContainOnlyFavoriteNeighbours() {

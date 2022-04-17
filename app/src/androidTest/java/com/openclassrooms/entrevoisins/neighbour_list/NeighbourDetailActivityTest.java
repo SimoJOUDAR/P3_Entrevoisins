@@ -31,7 +31,7 @@ import org.junit.runner.RunWith;
 public class NeighbourDetailActivityTest {
 
     // This is fixed
-    private static int idNeighbourToTest = 3;
+    private static int ITEMS_COUNT = 3;
     private ListNeighbourActivity mActivity;
     private NeighbourApiService mApiService;
 
@@ -53,7 +53,7 @@ public class NeighbourDetailActivityTest {
     @Test
     public void neighbourDetailsActivity_isDisplayed() {
         onView(allOf(withId(R.id.list_neighbours), isDisplayed()))
-                .perform(actionOnItemAtPosition(idNeighbourToTest, click()));
+                .perform(actionOnItemAtPosition(ITEMS_COUNT, click()));
 
         onView(withId(R.id.activity_neighbour_detail)).check(matches(isDisplayed()));
     }
@@ -64,14 +64,14 @@ public class NeighbourDetailActivityTest {
     @Test
     public void neighbourDetailsActivity_textViewsAreDisplayed() {
         onView(allOf(withId(R.id.list_neighbours), isDisplayed()))
-                .perform(actionOnItemAtPosition(idNeighbourToTest, click()));
+                .perform(actionOnItemAtPosition(ITEMS_COUNT, click()));
 
         onView(withId(R.id.activity_neighbour_detail)).check(matches(isDisplayed()));
-        onView(withId(R.id.detail_avatar_username)).check(matches(withText(mApiService.getNeighbours().get(idNeighbourToTest).getName())));
-        onView(withId(R.id.detail_username)).check(matches(withText(mApiService.getNeighbours().get(idNeighbourToTest).getName())));
-        onView(withId(R.id.detail_address)).check(matches(withText(mApiService.getNeighbours().get(idNeighbourToTest).getAddress())));
-        onView(withId(R.id.detail_phone_number)).check(matches(withText(mApiService.getNeighbours().get(idNeighbourToTest).getPhoneNumber())));
-        onView(withId(R.id.detail_about)).check(matches(withText(mApiService.getNeighbours().get(idNeighbourToTest).getAboutMe())));
+        onView(withId(R.id.detail_avatar_username)).check(matches(withText(mApiService.getNeighbours().get(ITEMS_COUNT).getName())));
+        onView(withId(R.id.detail_username)).check(matches(withText(mApiService.getNeighbours().get(ITEMS_COUNT).getName())));
+        onView(withId(R.id.detail_address)).check(matches(withText(mApiService.getNeighbours().get(ITEMS_COUNT).getAddress())));
+        onView(withId(R.id.detail_phone_number)).check(matches(withText(mApiService.getNeighbours().get(ITEMS_COUNT).getPhoneNumber())));
+        onView(withId(R.id.detail_about)).check(matches(withText(mApiService.getNeighbours().get(ITEMS_COUNT).getAboutMe())));
     }
 
 }
