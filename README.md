@@ -3,7 +3,7 @@
 ## Installation
 Clone/Download this repository and open with **Android Studio**
 ```bash
-git clone https://github.com/SimoJOUDAR/Entrevoisins
+git clone https://github.com/SimoJOUDAR/P3_Entrevoisins.git
 ```
 
 ## Generating signed APK
