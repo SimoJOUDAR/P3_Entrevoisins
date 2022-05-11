@@ -54,4 +54,17 @@ public class NeighbourServiceTest {
         service.changeIsFavorite(neighbours.get(0));
         assertTrue(neighbours.get(0).getIsFavorite());
     }
+
+    //AddNewNeighbour Test ?
+    @Test
+    public void createNewNeighbour() {
+        Neighbour newNeighbour = new Neighbour(13, "Scarlett",
+                "https://i.pravatar.cc/150?u=a042581f4e29026704d",
+                "Saint-Pierre-du-Mont ; 5km",
+                "+33 6 86 57 90 14",
+                "Bonjour !Je souhaiterais faire de la marche nordique. Pas initiée, je recherche une ou plusieurs personnes susceptibles de m'accompagner !J'aime les jeux de cartes tels la belote et le tarot..",
+                true);
+        service.createNeighbour(newNeighbour);
+        assertTrue(service.getNeighbours().contains(newNeighbour));
+    }
 }
