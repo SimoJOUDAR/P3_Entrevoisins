@@ -24,4 +24,4 @@ From Android Studio:
 The APK generated can be loaded and run on any Android phone.
 
 ## Preview
-<img src = "media/P3_Entrevoisin_1.png" height="600"> <img src = "media/P3_Entrevoisin_2.png" height="600"> <img src = "media/P3_Entrevoisin_3.png" height="500">
+<img src = "media/P3_Entrevoisin_1.png" height="550"> <img src = "media/P3_Entrevoisin_2.png" height="550"> <img src = "media/P3_Entrevoisin_3.png" height="550">
