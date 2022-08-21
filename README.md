@@ -1,5 +1,9 @@
 # EntreVoisins
 
+## About
+This is my third project for Openclassrooms' Android App Development program.
+This App "Entrevoisins" is meant to connect neighbours for better cross-neighbourhood communication and coordination.
+
 ## Installation
 Clone/Download this repository and open with **Android Studio**
 ```bash
@@ -13,3 +17,8 @@ From Android Studio:
 3. Click on ***Build APK(s)***
 
 You can load the apk on an Android phone or AVD to execute it
+
+
+## Preview
+<img src = "media/P3_Entrevoisin_1.png" height="600"> <img src = "media/P3_Entrevoisin_2.png" height="600"> <img src = "media/P3_Entrevoisin_3.png" height="600">
+
