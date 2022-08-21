@@ -30,6 +30,7 @@ public class NeighbourFragment extends Fragment {
     private List<Neighbour> mNeighbours;
     private RecyclerView mRecyclerView;
 
+    // Used to determine if to show the exhaustive neighbours list or the favorite neighbours list.
     private boolean mShowOnlyFavorites;
 
 
@@ -50,19 +51,16 @@ public class NeighbourFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_neighbour_list, container, false);
         Context context = view.getContext();
-        mRecyclerView = (RecyclerView) view;
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(context));
-        mRecyclerView.addItemDecoration(new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL));
+        mRecyclerView = (RecyclerView) view; // Binds the RecyclerView
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(context)); // Sets the RecyclerView's LayoutManager
+        mRecyclerView.addItemDecoration(new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL)); // Adds dividers between items of the list
         return view;
     }
 
-    /**
-     * Init the List of neighbours
-     */
+    // Init the List of neighbours
     private void initList() {
         if (mShowOnlyFavorites){
             mNeighbours = mApiService.getFavoriteNeighbours();
@@ -74,6 +72,7 @@ public class NeighbourFragment extends Fragment {
         mRecyclerView.setAdapter(new MyNeighbourRecyclerViewAdapter(mNeighbours));
     }
 
+    // We used initList() here to refresh the list everytime we display the fragment.
     @Override
     public void onResume() {
         super.onResume();
@@ -92,20 +91,14 @@ public class NeighbourFragment extends Fragment {
         EventBus.getDefault().unregister(this);
     }
 
-    /**
-     * Fired when the user clicks on a delete button
-     * @param event
-     */
+    // Deletes a neighbour from the list. Fired when the user clicks on a delete button.
     @Subscribe
     public void onDeleteNeighbour(DeleteNeighbourEvent event) {
         mApiService.deleteNeighbour(event.neighbour);
         initList();
     }
 
-    /**
-     * Fired when the user clicks on an item of the RecyclerView
-     * @param event
-     */
+    // To display the NeighbourDetailActivity of a neighbour. Fired when the user clicks on an item of the RecyclerView
     @Subscribe
     public void onOpenNeighbourDetail(DetailNeighbourEvent event) {
         Intent i = new Intent(getActivity(), NeighbourDetailActivity.class);

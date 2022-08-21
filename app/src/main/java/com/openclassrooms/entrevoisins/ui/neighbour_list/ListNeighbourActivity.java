@@ -22,7 +22,6 @@ public class ListNeighbourActivity extends AppCompatActivity {
     Toolbar mToolbar;
     @BindView(R.id.container)
     ViewPager mViewPager;
-
     ListNeighbourPagerAdapter mPagerAdapter;
 
     @Override
@@ -32,10 +31,10 @@ public class ListNeighbourActivity extends AppCompatActivity {
         ButterKnife.bind(this);
 
         setSupportActionBar(mToolbar);
-        mPagerAdapter = new ListNeighbourPagerAdapter(getSupportFragmentManager());
-        mViewPager.setAdapter(mPagerAdapter);
-        mViewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(mTabLayout));
-        mTabLayout.addOnTabSelectedListener(new TabLayout.ViewPagerOnTabSelectedListener(mViewPager));
+        mPagerAdapter = new ListNeighbourPagerAdapter(getSupportFragmentManager());  // Instantiates the PagerAdapter
+        mViewPager.setAdapter(mPagerAdapter);  // Inflates the PagerAdapter into the ViewPager
+        mViewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(mTabLayout));  // Initializes the ViewPager's pageChangeListener
+        mTabLayout.addOnTabSelectedListener(new TabLayout.ViewPagerOnTabSelectedListener(mViewPager)); // Initializes the PagerAdapter's tabChangeListener
 
     }
 

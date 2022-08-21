@@ -11,24 +11,16 @@ public class ListNeighbourPagerAdapter extends FragmentPagerAdapter {
         super(fm);
     }
 
-    /**
-     * getItem is called to instantiate the fragment for the given page.
-     * @param position
-     * @return
-     */
+    // Instantiates the proper fragment for the given page.
     @Override
     public Fragment getItem(int position) {
-        //return NeighbourFragment.newInstance();
         boolean showOnlyFavorites;
         if (position == 1){ showOnlyFavorites = true; }
         else showOnlyFavorites = false;
         return NeighbourFragment.newInstance(showOnlyFavorites);
     }
 
-    /**
-     * get the number of pages
-     * @return
-     */
+    // returns the sum of pager
     @Override
     public int getCount() {
         return 2;
